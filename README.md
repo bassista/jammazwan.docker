@@ -72,7 +72,7 @@ This demo is a cool demo, and it's dumb as a box of rocks. But you can also use 
 There may be other config necessary such as in your maven pom, but here are some snippets you might need.
 
 ```java
-.to("ftp://192.168.99.100/?username=petec&password=frog");
+.to("ftp://192.168.99.100/?username=fred&password=frog");
 ```
 
 and jms configuration:
