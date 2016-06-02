@@ -14,8 +14,9 @@ Go to your docker prompt, and paste in these commands.
 docker pull mysql
 docker run -p 3306:3306 --name e-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -e MYSQL_DATABASE=squid -d mysql
 ```
-Now you've got a mysql server up and running. Go ahead, try it. It' that simple. 
+Now you've got a mysql server up and running. Go ahead, try it. It's that simple.
 
+On to activemq for JMS:
 
 ```bash
 docker pull ivankrizsan/activemq-docker
@@ -23,6 +24,8 @@ docker run -p 8161:8161 -p 61616:61616 --name b-activemq -e CONTAINER_TIMEZONE=A
 ```
 
 Now you also have an activeMQ server running. [Hit this](http://192.168.99.100:8161/admin/) to test it in the browser. 
+
+FTP server?
 
 ```bash    
 docker pull stilliard/pure-ftpd
@@ -55,7 +58,7 @@ Don't try ftp commands from your mac bash shell. Or at least that's what I learn
 
 This demo is a cool demo, and it's dumb as a box of rocks. But you can also use fabric8. That is more powerful, just not as simple. 
 
-### How to connect up with your mac projects?
+### How to connect up to these servers with your Camel projects?
 
 There may be other config necessary such as in your maven pom, but here are some snippets you might need.
 
@@ -87,7 +90,7 @@ and jms configuration:
 ```
 
 ```xml
-<!-- some of this I am not so sure about -->
+<!-- some of this I am not so sure about, but this worked for me so I quit messing with it -->
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-client</artifactId>
@@ -119,22 +122,28 @@ and jms configuration:
             <version>${activemq-version}</version>
         </dependency>
 ```
-### Another tip:
+### A tip for saving the above setup:
+
+The bad news is that when you set up your servers, they go away as soon as you close the shells that kicked them off. **So you have to run the above sequence every time.**
 
 Most of us run mac or windows for our dev enviroments, so we need to use headless VirtualBox vm (installed by docker installer) to run our docker vms. This is transparent, but we can use this to our advantage....
 
-Once you set up your servers, instead of closing them by killing your docker shell, instead, do this to save your docker running servers exactly as you set them up!
+Once you set up your servers, instead of closing them by killing your docker shell, do this **to save your docker running servers exactly as you set them up!**
 
- * Open up your virtualbox client
+ * Open up your VirtualBox client UI
  * Find your running docker VM
  * Right click, Close > Save.
 
-Now you can restart this VM from virtual box before starting up docker client next time, and your servers will be as you left them.
+Now you can restart this VM from VirtualBox UI **before** starting up docker client next time, and your servers will be as you left them.
 
 The instructions on setting up servers above run pretty quickly, so maybe you don't care. But if you do, here's an easy solution.
 
 ### Other?
 
 You'll probably want to install php-myadmin or any of dozens of other clients, to look at your db, create schema, stuff like that. I found a docker image for that, but I already had php-myadmin running locally.
+
+### Options?
+
+These are just the docker images I found a few months ago. They work, but you might find better images instead.
 
 #### Happy Trails!
