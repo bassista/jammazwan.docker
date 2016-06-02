@@ -4,7 +4,7 @@ This is a simple project to demonstrate how you can use docker to set up support
 
 It assumes you already have your machine set up to run docker. **If that isn't the case, then _you_ have a whole _different_ set of problems!** Because docker is inevitable. Resistance is futile. You will eventually cave, FYI. Fortunately it is getting easier, as the months go by.
 
-### Our mission: Mysql, ActiveMQ, FTP servers
+### Our mission: MySQL, ActiveMQ, FTP servers:
 
 Let's say you want to do some sample projects to learn Camel, such as [jammazwan.100](https://github.com/jammazwan/jammazwan.100). But you **don't** want your box all cluttered up with junk that you might not otherwise use.
 
@@ -53,6 +53,15 @@ Your FTP server should now be working.
 ##### Testing FTP server on your macbook, like me? 
 
 Don't try ftp commands from your mac bash shell. Or at least that's what I learned. It's a known mac bug. But it works great from my camel projects!
+
+### Dumb docker commands you might find useful:
+
+```bash
+docker ps
+docker images
+```
+
+Actually, I found that I did very little inside the docker shell for these three servers. Just made sure they were up and running...
 
 ### But Wait! There's a better way.
 
@@ -121,6 +130,27 @@ and jms configuration:
             <artifactId>activemq-kahadb-store</artifactId>
             <version>${activemq-version}</version>
         </dependency>
+```
+
+And some of the substantial database config - this is the persistence.xml I used
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0">
+  <persistence-unit name="camel" transaction-type="RESOURCE_LOCAL">
+    <class>myorg.PurchaseOrder</class>
+    <class>myorg.Ledger</class>
+    <class>myorg.ProductionRun</class>
+    <properties>
+      <property name="openjpa.ConnectionDriverName" value="com.mysql.jdbc.Driver" />
+      <property name="openjpa.ConnectionURL" value="jdbc:mysql://192.168.99.100:3306/squid" />
+      <property name="openjpa.ConnectionUserName" value="root" />
+      <property name="openjpa.ConnectionPassword" value="my-secret-pw" />
+      <property name="openjpa.jdbc.SynchronizeMappings" value="buildSchema" />
+    </properties>
+  </persistence-unit>
+</persistence>
 ```
 ### A tip for saving the above setup:
 
