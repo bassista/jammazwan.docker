@@ -2,11 +2,11 @@
 
 This is a simple project to demonstrate how you can use docker to set up supporting infrastructure for your camel learning projects, without spending hours doing machine admin.
 
-It assumes you already have your machine set up to run docker, but if that isn't the case you have a whole different set of problems. Docker is inevitable. Resistance is futile.
+It assumes you already have your machine set up to run docker. **If that isn't the case, then _you_ have a whole _different_ set of problems!** Because docker is inevitable. Resistance is futile. You will eventually cave, FYI. Fortunately it is getting easier, as the months go by.
 
-### Our mission: Mysql server, ActiveMQ server, FTP server
+### Our mission: Mysql, ActiveMQ, FTP servers
 
-Let's say you want to do some sample projects to learn Camel, such as [jammazwan.100](https://github.com/jammazwan/jammazwan.100). But you don't want your box all cluttered up with junk that you might not otherwise use.
+Let's say you want to do some sample projects to learn Camel, such as [jammazwan.100](https://github.com/jammazwan/jammazwan.100). But you **don't** want your box all cluttered up with junk that you might not otherwise use.
 
 Go to your docker prompt, and paste in these commands.
 
@@ -119,7 +119,19 @@ and jms configuration:
             <version>${activemq-version}</version>
         </dependency>
 ```
+### Another tip:
 
+Most of us run mac or windows for our dev enviroments, so we need to use headless VirtualBox vm (installed by docker installer) to run our docker vms. This is transparent, but we can use this to our advantage....
+
+Once you set up your servers, instead of closing them by killing your docker shell, instead, do this to save your docker running servers exactly as you set them up!
+
+ * Open up your virtualbox client
+ * Find your running docker VM
+ * Right click, Close > Save.
+
+Now you can restart this VM from virtual box before starting up docker client next time, and your servers will be as you left them.
+
+The instructions on setting up servers above run pretty quickly, so maybe you don't care. But if you do, here's an easy solution.
 
 ### Other?
 
