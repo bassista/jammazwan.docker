@@ -71,6 +71,22 @@ docker images
 
 Actually, I found that I did very little inside the docker shell for these three servers. Just made sure they were up and running...
 
+### A tip for saving the above setup:
+
+The bad news is that when you set up your servers, they go away as soon as you close the shells that kicked them off. **So you have to run the above sequence every time.**
+
+Most of us run mac or windows for our dev enviroments, so we need to use headless VirtualBox vm (installed by docker installer) to run our docker vms. This is transparent, but we can use this to our advantage....
+
+Once you set up your servers, instead of closing them by killing your docker shell, do this **to save your docker running servers exactly as you set them up!**
+
+ * Open up your VirtualBox client UI
+ * Find your running docker VM
+ * Right click, Close > Save.
+
+Now you can restart this VM from VirtualBox UI **before** starting up docker client next time, and your servers will be as you left them.
+
+The instructions on setting up servers above run pretty quickly, so maybe you don't care. But if you do, here's an easy solution.
+
 ### But Wait! There's a better way.
 
 This demo is a cool demo, and it's dumb as a box of rocks. But you can also use fabric8. That is more powerful, just not as simple. 
@@ -160,22 +176,6 @@ And some of the substantial database config - this is the persistence.xml I used
   </persistence-unit>
 </persistence>
 ```
-### A tip for saving the above setup:
-
-The bad news is that when you set up your servers, they go away as soon as you close the shells that kicked them off. **So you have to run the above sequence every time.**
-
-Most of us run mac or windows for our dev enviroments, so we need to use headless VirtualBox vm (installed by docker installer) to run our docker vms. This is transparent, but we can use this to our advantage....
-
-Once you set up your servers, instead of closing them by killing your docker shell, do this **to save your docker running servers exactly as you set them up!**
-
- * Open up your VirtualBox client UI
- * Find your running docker VM
- * Right click, Close > Save.
-
-Now you can restart this VM from VirtualBox UI **before** starting up docker client next time, and your servers will be as you left them.
-
-The instructions on setting up servers above run pretty quickly, so maybe you don't care. But if you do, here's an easy solution.
-
 ### Other?
 
 You'll probably want to install php-myadmin or any of dozens of other clients, to look at your db, create schema, stuff like that. I found a docker image for that, but I already had php-myadmin running locally.
